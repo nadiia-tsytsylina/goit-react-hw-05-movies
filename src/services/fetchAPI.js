@@ -25,6 +25,33 @@ export const getMovieDetails = async movieId => {
   return data;
 };
 
+export const getMovieCast = async movieId => {
+  const response = await axios.get(
+    `${BASE_URL}movie/${movieId}/credits`,
+    options
+  );
+  const data = response.data;
+  return data;
+};
+
+export const getMovieReviews = async movieId => {
+  const response = await axios.get(
+    `${BASE_URL}movie/${movieId}/reviews`,
+    options
+  );
+  const data = response.data;
+  return data;
+};
+
+export const getMoviesByName = async queryName => {
+  const response = await axios.get(
+    `${BASE_URL}search/movie?query=${queryName}&page=1`,
+    options
+  );
+  const data = response.data;
+  return data;
+};
+
 // search movie by name
 // fetch(
 //   'https://api.themoviedb.org/3/search/movie?query={name}&page=1',

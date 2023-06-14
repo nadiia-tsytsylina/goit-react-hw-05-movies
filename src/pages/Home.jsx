@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getTrending } from 'services/fetchAPI';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
     getTrending()
@@ -15,17 +15,23 @@ const Home = () => {
 
   return (
     <div>
-      {movies.map(movie => {
-        return (
-          <Link key={movie.id} to={`movies/${movie.id}`}>
-            <p>{movie.title}</p>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-          </Link>
-        );
-      })}
+      {movies && (
+        <>
+          {movies.map(movie => {
+            return (
+              <Link key={movie.id} to={`movies/${movie.id}`}>
+                <p>{movie.title}</p>
+                {movie.poster_path && (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                )}
+              </Link>
+            );
+          })}
+        </>
+      )}
     </div>
   );
 };
