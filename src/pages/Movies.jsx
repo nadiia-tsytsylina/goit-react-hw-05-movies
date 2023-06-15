@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { getMoviesByName } from 'services/fetchAPI';
-import { Link } from 'react-router-dom';
+import {
+  SearchForm,
+  SearchFormInput,
+  SearchFormButton,
+  MovieGallery,
+  MovieTitle,
+  MoviePoster,
+  MovieLink,
+} from 'components/Movies.styled';
+import defaultImage from 'images/defaultImage.jpg';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -28,8 +37,8 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormInput
           value={query}
           onChange={handleChange}
           name="query"
@@ -39,24 +48,26 @@ const Movies = () => {
           placeholder="Search movies"
         />
 
-        <button type="submit">Search</button>
-      </form>
+        <SearchFormButton type="submit">Search</SearchFormButton>
+      </SearchForm>
       {movies && (
-        <ul>
+        <MovieGallery>
           {movies.map(movie => {
             return (
-              <Link key={movie.id} to={`${movie.id}`}>
-                <p>{movie.title}</p>
-                {movie.poster_path && (
-                  <img
+              <MovieLink key={movie.id} to={`${movie.id}`}>
+                <MovieTitle>{movie.title}</MovieTitle>
+                {movie.poster_path ? (
+                  <MoviePoster
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
                   />
+                ) : (
+                  <MoviePoster src={defaultImage} alt={movie.title} />
                 )}
-              </Link>
+              </MovieLink>
             );
           })}
-        </ul>
+        </MovieGallery>
       )}
     </>
   );

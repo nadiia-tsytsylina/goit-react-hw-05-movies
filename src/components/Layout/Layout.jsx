@@ -1,13 +1,13 @@
-import { StyledLink } from './Layout.styled';
+import { StyledLink, Navigation } from './Layout.styled';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
   return (
     <div>
-      <nav>
+      <Navigation>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/movies">Movies</StyledLink>
-      </nav>
+      </Navigation>
       <Outlet />
     </div>
   );

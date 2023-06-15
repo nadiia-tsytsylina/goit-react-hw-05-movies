@@ -1,5 +1,10 @@
+import {
+  MovieGallery,
+  MovieTitle,
+  MoviePoster,
+  MovieLink,
+} from 'components/Movies.styled';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getTrending } from 'services/fetchAPI';
 
 const Home = () => {
@@ -14,25 +19,25 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <MovieGallery>
       {movies && (
         <>
           {movies.map(movie => {
             return (
-              <Link key={movie.id} to={`movies/${movie.id}`}>
-                <p>{movie.title}</p>
+              <MovieLink key={movie.id} to={`movies/${movie.id}`}>
+                <MovieTitle>{movie.title}</MovieTitle>
                 {movie.poster_path && (
-                  <img
+                  <MoviePoster
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
                   />
                 )}
-              </Link>
+              </MovieLink>
             );
           })}
         </>
       )}
-    </div>
+    </MovieGallery>
   );
 };
 
