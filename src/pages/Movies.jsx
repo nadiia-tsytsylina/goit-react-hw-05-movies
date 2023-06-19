@@ -1,31 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesByName } from 'services/fetchAPI';
 import SearchForm from 'components/SearchForm/SearchForm';
 import MovieList from 'components/MovieList/MovieList';
-// import { useParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState(null);
-  // const { searchParams } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+  const location = useLocation();
 
-  // console.log(searchParams);
+  useEffect(() => {
+    if (query === '') return;
 
-  const handleFormSubmit = newQuery => {
-    if (newQuery !== query) {
-      setQuery(newQuery);
-      getMoviesByName(newQuery)
-        .then(data => {
-          setMovies(data.results);
-        })
-        .catch(err => console.error(err));
-    }
+    getMoviesByName(query)
+      .then(data => {
+        setMovies(data.results);
+      })
+      .catch(err => console.error(err));
+  }, [query]);
+
+  const handleFormSubmit = query => {
+    setSearchParams({ query: query });
   };
 
   return (
     <>
       <SearchForm onSubmit={handleFormSubmit} />
-      {movies && <MovieList movies={movies} path="" />}
+      {movies && (
+        <MovieList movies={movies} path="" state={{ from: location }} />
+      )}
     </>
   );
 };

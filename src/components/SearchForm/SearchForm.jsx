@@ -1,15 +1,12 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import {
   SearchFormBox,
   SearchFormInput,
   SearchFormButton,
 } from 'components/SearchForm/SearchForm.styled';
+import { useState } from 'react';
 
 const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('query'));
 
   const handleChange = event => {
     setQuery(event.currentTarget.value.toLowerCase());
@@ -22,7 +19,6 @@ const SearchForm = ({ onSubmit }) => {
       console.log('Please input tag for searching images');
       return;
     }
-    setSearchParams({ query: query });
     onSubmit(query);
     setQuery('');
   };

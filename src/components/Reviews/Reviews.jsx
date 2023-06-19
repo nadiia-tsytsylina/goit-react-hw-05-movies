@@ -14,6 +14,7 @@ const Reviews = () => {
     getMovieReviews(movieId)
       .then(data => {
         setReviews(data.results);
+        console.log(reviews);
       })
       .catch(err => console.error(err));
   }, [movieId]);

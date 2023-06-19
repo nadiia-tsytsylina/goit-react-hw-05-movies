@@ -1,38 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-export const MovieContainer = styled('div')`
-  display: flex;
-  gap: 24px;
-`;
-
-export const MoviePoster = styled('img')`
-  height: 500px;
-`;
-export const MovieTitle = styled('h2')`
-  margin-bottom: 16px;
-  color: #31d0aa;
-  font-size: 32px;
-`;
-
-export const MovieText = styled('p')`
-  margin-bottom: 12px;
-  font-size: 20px;
-`;
-
-export const UserScoreTitle = styled('span')`
-  font-weight: 600;
-`;
-
-export const MovieSubtitle = styled('h3')`
-  font-size: 24px;
-  margin-bottom: 8px;
-`;
-
-export const Genre = styled('p')`
-  font-size: 20px;
-`;
-
 export const AdditionalTitle = styled('h3')`
   font-size: 24px;
   margin-bottom: 16px;
@@ -54,8 +22,12 @@ export const AdditionalLink = styled(NavLink)`
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.active {
+    color: #31d0aa;
+  }
+  &:hover {
     color: #31d0aa;
   }
 `;
