@@ -13,6 +13,10 @@ const Reviews = () => {
     }
     getMovieReviews(movieId)
       .then(data => {
+        if (data.results.length < 1) {
+          setReviews(null);
+          return;
+        }
         setReviews(data.results);
       })
       .catch(err => console.error(err));
@@ -20,36 +24,32 @@ const Reviews = () => {
 
   return (
     <>
-      {reviews && (
-        <>
-          {reviews === true ? (
-            <ul>
-              {reviews.map(review => {
-                return (
-                  <li key={review.id}>
-                    <AuthorName>{review.author}</AuthorName>
-                    {review.content.length > 1000 ? (
-                      <>
-                        <ReviewText>{review.content.slice(0, 1000)}</ReviewText>
-                        <ReviewLink
-                          href={review.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Read more
-                        </ReviewLink>
-                      </>
-                    ) : (
-                      <ReviewText>{review.content}</ReviewText>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p>Sorry</p>
-          )}
-        </>
+      {reviews ? (
+        <ul>
+          {reviews.map(review => {
+            return (
+              <li key={review.id}>
+                <AuthorName>{review.author}</AuthorName>
+                {review.content.length > 1000 ? (
+                  <>
+                    <ReviewText>{review.content.slice(0, 1000)}</ReviewText>
+                    <ReviewLink
+                      href={review.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Read more
+                    </ReviewLink>
+                  </>
+                ) : (
+                  <ReviewText>{review.content}</ReviewText>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>Sorry</p>
       )}
     </>
   );
