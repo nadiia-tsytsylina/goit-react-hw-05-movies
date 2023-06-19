@@ -15,6 +15,9 @@ const Cast = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
     getMovieCast(movieId)
       .then(data => {
         setCast(data.cast);

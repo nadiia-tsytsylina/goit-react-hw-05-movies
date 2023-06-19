@@ -1,6 +1,7 @@
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieDetails } from 'services/fetchAPI';
+import { BackLink } from 'components/BackLink';
 import {
   MovieContainer,
   MoviePoster,
@@ -17,6 +18,8 @@ import {
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     getMovieDetails(movieId)
@@ -29,6 +32,7 @@ const MovieDetails = () => {
   return (
     <>
       <MovieContainer>
+        <BackLink to={backLinkHref}>Back</BackLink>
         {movie && (
           <>
             {movie.poster_path && (

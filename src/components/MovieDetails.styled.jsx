@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom';
 export const MovieContainer = styled('div')`
   display: flex;
   gap: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
 `;
 
 export const MoviePoster = styled('img')`

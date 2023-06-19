@@ -1,18 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieReviews } from 'services/fetchAPI';
-import {
-  ReviewsList,
-  AuthorName,
-  ReviewText,
-  ReviewLink,
-} from './Reviews.styled';
+import { AuthorName, ReviewText, ReviewLink } from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
     getMovieReviews(movieId)
       .then(data => {
         setReviews(data.results);
@@ -23,7 +21,7 @@ const Reviews = () => {
   return (
     <>
       {reviews ? (
-        <ReviewsList>
+        <ul>
           {reviews.map(review => {
             return (
               <li key={review.id}>
@@ -45,7 +43,7 @@ const Reviews = () => {
               </li>
             );
           })}
-        </ReviewsList>
+        </ul>
       ) : (
         <p>Sorry</p>
       )}

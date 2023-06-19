@@ -1,10 +1,5 @@
 import styled from '@emotion/styled';
 
-export const ReviewsList = styled('ul')`
-  padding-left: 24px;
-  padding-right: 24px;
-`;
-
 export const AuthorName = styled('h4')`
   font-size: 20px;
   margin-bottom: 8px;

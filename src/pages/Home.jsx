@@ -1,11 +1,6 @@
-import {
-  MovieGallery,
-  MovieTitle,
-  MoviePoster,
-  MovieLink,
-} from 'components/Movies.styled';
 import { useState, useEffect } from 'react';
 import { getTrending } from 'services/fetchAPI';
+import MovieList from 'components/MovieList/MovieList';
 
 const Home = () => {
   const [movies, setMovies] = useState(null);
@@ -18,27 +13,7 @@ const Home = () => {
       .catch(err => console.error(err));
   }, []);
 
-  return (
-    <MovieGallery>
-      {movies && (
-        <>
-          {movies.map(movie => {
-            return (
-              <MovieLink key={movie.id} to={`movies/${movie.id}`}>
-                <MovieTitle>{movie.title}</MovieTitle>
-                {movie.poster_path && (
-                  <MoviePoster
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                )}
-              </MovieLink>
-            );
-          })}
-        </>
-      )}
-    </MovieGallery>
-  );
+  return <>{movies && <MovieList movies={movies} path="movies/" />}</>;
 };
 
 export default Home;
