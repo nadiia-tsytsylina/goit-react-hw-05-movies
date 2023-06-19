@@ -14,39 +14,42 @@ const Reviews = () => {
     getMovieReviews(movieId)
       .then(data => {
         setReviews(data.results);
-        console.log(reviews);
       })
       .catch(err => console.error(err));
   }, [movieId]);
 
   return (
     <>
-      {reviews ? (
-        <ul>
-          {reviews.map(review => {
-            return (
-              <li key={review.id}>
-                <AuthorName>{review.author}</AuthorName>
-                {review.content.length > 1000 ? (
-                  <>
-                    <ReviewText>{review.content.slice(0, 1000)}</ReviewText>
-                    <ReviewLink
-                      href={review.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Read more
-                    </ReviewLink>
-                  </>
-                ) : (
-                  <ReviewText>{review.content}</ReviewText>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <p>Sorry</p>
+      {reviews && (
+        <>
+          {reviews === true ? (
+            <ul>
+              {reviews.map(review => {
+                return (
+                  <li key={review.id}>
+                    <AuthorName>{review.author}</AuthorName>
+                    {review.content.length > 1000 ? (
+                      <>
+                        <ReviewText>{review.content.slice(0, 1000)}</ReviewText>
+                        <ReviewLink
+                          href={review.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Read more
+                        </ReviewLink>
+                      </>
+                    ) : (
+                      <ReviewText>{review.content}</ReviewText>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p>Sorry</p>
+          )}
+        </>
       )}
     </>
   );
