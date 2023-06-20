@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import Loader from 'components/Loader/Loader';
 import {
   AdditionalTitle,
   AdditionalList,
@@ -17,7 +19,9 @@ const AdditionalInfo = () => {
           <AdditionalLink to="reviews">Reviews</AdditionalLink>
         </li>
       </AdditionalList>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
