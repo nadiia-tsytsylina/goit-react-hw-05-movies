@@ -36,7 +36,6 @@ const SearchForm = ({ onSubmit }) => {
         autoFocus
         placeholder="Search movies"
       />
-
       <SearchFormButton type="submit">Search</SearchFormButton>
     </SearchFormBox>
   );

@@ -1,7 +1,8 @@
-import MovieList from 'components/MovieList/MovieList';
-import Loader from 'components/Loader/Loader';
+import { lazy } from 'react';
 import { useState, useEffect } from 'react';
 import { getTrending } from 'services/fetchAPI';
+import Loader from 'components/Loader/Loader';
+const MovieList = lazy(() => import('../components/MovieList/MovieList'));
 
 const Home = () => {
   const [movies, setMovies] = useState(null);

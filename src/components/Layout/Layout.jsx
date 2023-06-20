@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import Loader from 'components/Loader/Loader';
 import { StyledLink, Navigation, Container } from './Layout.styled';
 
 const Layout = () => {
@@ -11,7 +13,9 @@ const Layout = () => {
         </Container>
       </Navigation>
       <Container>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </Container>
     </div>
   );

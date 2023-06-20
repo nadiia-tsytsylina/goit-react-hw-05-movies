@@ -40,7 +40,6 @@ const Cast = () => {
     getMovieDetails(movieId)
       .then(data => {
         setMovieTitle(data.title);
-        // setIsLoading(false)
       })
       .catch(err => console.error(err));
   }, [movieId]);
