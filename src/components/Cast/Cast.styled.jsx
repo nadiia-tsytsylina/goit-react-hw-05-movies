@@ -25,3 +25,9 @@ export const ActorCharacter = styled('p')`
 export const ActorCharacterTitle = styled('span')`
   font-weight: 600;
 `;
+
+export const CastNotFound = styled('h4')`
+  margin-bottom: 16px;
+  font-size: 20px;
+  text-align: center;
+`;

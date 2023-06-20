@@ -1,9 +1,11 @@
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   SearchFormBox,
   SearchFormInput,
   SearchFormButton,
 } from 'components/SearchForm/SearchForm.styled';
-import { useState } from 'react';
 
 const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
@@ -16,7 +18,7 @@ const SearchForm = ({ onSubmit }) => {
     event.preventDefault();
 
     if (query.trim() === '') {
-      console.log('Please input tag for searching images');
+      toast.error('Please input name for searching movies');
       return;
     }
     onSubmit(query);

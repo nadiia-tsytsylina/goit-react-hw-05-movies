@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
 display: block;
 width: 110px;
   border: 2px solid #31d0aa;
@@ -21,9 +21,3 @@ width: 110px;
     color: #ffffff;
     background-color: #31d0aa;
 `;
-
-const BackLink = ({ to, children }) => {
-  return <StyledLink to={to}>{children}</StyledLink>;
-};
-
-export default BackLink;

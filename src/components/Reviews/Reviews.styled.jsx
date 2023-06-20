@@ -30,3 +30,9 @@ width: 110px;
     color: #ffffff;
     background-color: #31d0aa;
 `;
+
+export const ReviewsNotFound = styled('h4')`
+  margin-bottom: 16px;
+  font-size: 20px;
+  text-align: center;
+`;

@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from 'components/Layout/Layout';
+import Layout from 'components/Layout/Layout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
-import NotFound from './NotFound';
+import NotFound from './NotFound/NotFound';
 
 export const App = () => {
   return (

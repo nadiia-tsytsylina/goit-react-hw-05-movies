@@ -1,23 +1,42 @@
+import Loader from 'components/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getMovieReviews } from 'services/fetchAPI';
-import { AuthorName, ReviewText, ReviewLink } from './Reviews.styled';
+import { getMovieReviews, getMovieDetails } from 'services/fetchAPI';
+import {
+  AuthorName,
+  ReviewText,
+  ReviewLink,
+  ReviewsNotFound,
+} from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
+  const [movieTitle, setMovieTitle] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (!movieId) {
       return;
     }
+
     getMovieReviews(movieId)
       .then(data => {
         if (data.results.length < 1) {
           setReviews(null);
+          setIsLoading(false);
           return;
         }
         setReviews(data.results);
+        setIsLoading(false);
+      })
+      .catch(err => console.error(err));
+
+    getMovieDetails(movieId)
+      .then(data => {
+        setMovieTitle(data.title);
       })
       .catch(err => console.error(err));
   }, [movieId]);
@@ -49,8 +68,11 @@ const Reviews = () => {
           })}
         </ul>
       ) : (
-        <p>Sorry</p>
+        <ReviewsNotFound>
+          We don't have any reviews for movie "{movieTitle}"
+        </ReviewsNotFound>
       )}
+      {isLoading && <Loader />}
     </>
   );
 };

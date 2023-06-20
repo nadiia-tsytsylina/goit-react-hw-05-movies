@@ -1,21 +1,36 @@
+import SearchForm from 'components/SearchForm/SearchForm';
+import MovieList from 'components/MovieList/MovieList';
+import Loader from 'components/Loader/Loader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesByName } from 'services/fetchAPI';
-import SearchForm from 'components/SearchForm/SearchForm';
-import MovieList from 'components/MovieList/MovieList';
 
 const Movies = () => {
   const [movies, setMovies] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const location = useLocation();
 
   useEffect(() => {
-    if (query === '') return;
+    if (query === '') {
+      return;
+    }
+    setIsLoading(true);
+    setMovies(null);
 
     getMoviesByName(query)
       .then(data => {
+        if (data.results.length < 1) {
+          setMovies(null);
+          toast.error(`There are no movies with name ${query}`);
+          setIsLoading(false);
+          return;
+        }
         setMovies(data.results);
+        setIsLoading(false);
       })
       .catch(err => console.error(err));
   }, [query]);
@@ -30,6 +45,19 @@ const Movies = () => {
       {movies && (
         <MovieList movies={movies} path="" state={{ from: location }} />
       )}
+      {isLoading && <Loader />}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };
