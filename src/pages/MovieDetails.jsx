@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { getMovieDetails } from 'services/fetchAPI';
+import { BsArrowLeft } from 'react-icons/bs';
 import Loader from 'components/Loader/Loader';
 import BackLink from 'components/BackLink/BackLink';
 const MovieInfo = lazy(() => import('../components/MovieInfo/MovieInfo'));
@@ -27,12 +28,14 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <>
-      <BackLink to={backLinkRef.current}>Go back</BackLink>
+    <div style={{ maxWidth: 1440, marginLeft: 'auto', marginRight: 'auto' }}>
+      <BackLink to={backLinkRef.current}>
+        <BsArrowLeft />
+      </BackLink>
       {movie && <MovieInfo movie={movie} />}
       {movie && <AdditionalInfo />}
       {isLoading && <Loader />}
-    </>
+    </div>
   );
 };
 

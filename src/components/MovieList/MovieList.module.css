@@ -1,0 +1,75 @@
+.MovieGallery {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 40px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.MovieItem {
+  display: inline-block;
+  margin: 0;
+  text-align: left;
+  position: relative;
+}
+
+.MovieFigure {
+  height: 100%;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.MovieFigure:hover {
+  box-shadow: 0px 0px 18px 5px #5fc3e4;
+}
+
+.MovieImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  transition: transform 0.4s;
+  object-fit: cover;
+}
+
+.MovieFigcaption {
+  position: absolute;
+  left: 0;
+  background: #5fc3e4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  top: auto;
+  bottom: 0;
+  opacity: 0;
+  padding: 10px;
+  transform: translateY(100%);
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+
+.MovieTitle {
+  margin: 0;
+  padding: 0;
+  color: #293b4c;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+}
+
+.MovieFigure:hover .MovieImg {
+  transform: translateY(-50px);
+}
+
+.MovieFigure:hover .MovieFigcaption {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: transform 0.4s, opacity 0.1s;
+}

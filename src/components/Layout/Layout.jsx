@@ -5,19 +5,17 @@ import { StyledLink, Navigation, Container } from './Layout.styled';
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <Navigation>
-        <Container>
-          <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
-        </Container>
+        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="/movies">Movies</StyledLink>
       </Navigation>
       <Container>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </Container>
-    </div>
+    </>
   );
 };
 

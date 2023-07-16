@@ -1,17 +1,17 @@
 import Loader from 'components/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getMovieReviews, getMovieDetails } from 'services/fetchAPI';
+import { getMovieReviews } from 'services/fetchAPI';
 import {
   AuthorName,
   ReviewText,
   ReviewLink,
   ReviewsNotFound,
+  ReviewItem,
 } from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
-  const [movieTitle, setMovieTitle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
 
@@ -33,12 +33,6 @@ const Reviews = () => {
         setIsLoading(false);
       })
       .catch(err => console.error(err));
-
-    getMovieDetails(movieId)
-      .then(data => {
-        setMovieTitle(data.title);
-      })
-      .catch(err => console.error(err));
   }, [movieId]);
 
   return (
@@ -47,7 +41,7 @@ const Reviews = () => {
         <ul>
           {reviews.map(review => {
             return (
-              <li key={review.id}>
+              <ReviewItem key={review.id}>
                 <AuthorName>{review.author}</AuthorName>
                 {review.content.length > 1000 ? (
                   <>
@@ -63,13 +57,13 @@ const Reviews = () => {
                 ) : (
                   <ReviewText>{review.content}</ReviewText>
                 )}
-              </li>
+              </ReviewItem>
             );
           })}
         </ul>
       ) : (
         <ReviewsNotFound>
-          We don't have any reviews for movie "{movieTitle}"
+          We don't have any reviews for this movie
         </ReviewsNotFound>
       )}
       {isLoading && <Loader />}

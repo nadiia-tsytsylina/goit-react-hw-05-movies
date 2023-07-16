@@ -1,8 +1,8 @@
 import Loader from 'components/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getMovieCast, getMovieDetails } from 'services/fetchAPI';
-import defaultImage from 'images/defaultImage.jpg';
+import { getMovieCast } from 'services/fetchAPI';
+import defaultActor from 'images/defaultActor.png';
 import {
   CastList,
   CastItem,
@@ -10,11 +10,11 @@ import {
   ActorCharacter,
   ActorCharacterTitle,
   CastNotFound,
+  CastImg,
 } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState(null);
-  const [movieTitle, setMovieTitle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
 
@@ -36,12 +36,6 @@ const Cast = () => {
         setIsLoading(false);
       })
       .catch(err => console.error(err));
-
-    getMovieDetails(movieId)
-      .then(data => {
-        setMovieTitle(data.title);
-      })
-      .catch(err => console.error(err));
   }, [movieId]);
 
   return (
@@ -52,12 +46,15 @@ const Cast = () => {
             return (
               <CastItem key={actor.cast_id}>
                 {actor.profile_path ? (
-                  <img
+                  <CastImg
                     src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                     alt={actor.original_name}
-                  ></img>
+                  ></CastImg>
                 ) : (
-                  <img src={defaultImage} alt={actor.original_name}></img>
+                  <CastImg
+                    src={defaultActor}
+                    alt={actor.original_name}
+                  ></CastImg>
                 )}
                 <ActorName>{actor.original_name}</ActorName>
                 <ActorCharacter>
@@ -70,7 +67,7 @@ const Cast = () => {
         </CastList>
       ) : (
         <CastNotFound>
-          We don't have any information about cast of movie "{movieTitle}"
+          We don't have any information about cast of this movie
         </CastNotFound>
       )}
       {isLoading && <Loader />}

@@ -2,24 +2,30 @@ import styled from '@emotion/styled';
 
 export const CastList = styled('ul')`
   display: flex;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
 export const CastItem = styled('li')`
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
   width: 200px;
+  padding-bottom: 8px;
   text-align: center;
-  align-self: flex-start;
+  border: 2px solid #5fc3e4;
+  border-radius: 12px;
 `;
 
 export const ActorName = styled('h4')`
-  margin-bottom: 8px;
   font-size: 20px;
+  padding: 0 4px;
 `;
 export const ActorCharacter = styled('p')`
-  margin-bottom: 4px;
   font-size: 16px;
+  padding: 0 4px;
+  color: #293b4c;
 `;
 
 export const ActorCharacterTitle = styled('span')`
@@ -27,7 +33,12 @@ export const ActorCharacterTitle = styled('span')`
 `;
 
 export const CastNotFound = styled('h4')`
-  margin-bottom: 16px;
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
+  font-weight: 400;
+  color: #293b4c;
+`;
+
+export const CastImg = styled('img')`
+  border-radius: 12px;
 `;

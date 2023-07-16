@@ -1,4 +1,4 @@
-import defaultImage from 'images/defaultImage.jpg';
+import defaultMovie from 'images/defaultMovie.png';
 import {
   MovieContainer,
   MoviePoster,
@@ -18,7 +18,7 @@ const MovieInfo = ({ movie }) => {
           alt={movie.title}
         />
       ) : (
-        <MoviePoster src={defaultImage} alt={movie.title} />
+        <MoviePoster src={defaultMovie} alt={movie.title} />
       )}
       <div>
         <MovieTitle>{movie.title}</MovieTitle>

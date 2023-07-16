@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BsSearch } from 'react-icons/bs';
 import {
   SearchFormBox,
   SearchFormInput,
@@ -36,7 +37,9 @@ const SearchForm = ({ onSubmit }) => {
         autoFocus
         placeholder="Search movies"
       />
-      <SearchFormButton type="submit">Search</SearchFormButton>
+      <SearchFormButton type="submit">
+        Search <BsSearch />
+      </SearchFormButton>
     </SearchFormBox>
   );
 };
