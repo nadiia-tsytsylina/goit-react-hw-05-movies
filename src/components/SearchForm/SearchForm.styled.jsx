@@ -27,7 +27,7 @@ export const SearchFormInput = styled('input')`
   outline: none;
   padding: 8px 16px;
   background-color: transparent;
-  color: #111111;
+  color: #293b4c;
 
   &::placeholder {
     font: inherit;
@@ -48,11 +48,13 @@ export const SearchFormButton = styled('button')`
   width: 130px;
   height: 48px;
   border: 0;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
 
   &:hover {
     opacity: 1;
+    box-shadow: 0px 0px 18px 5px #5fc3e4;
   }
 `;

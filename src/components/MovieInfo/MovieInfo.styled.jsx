@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 export const MovieContainer = styled('div')`
   display: flex;
   gap: 24px;
+  border: 2px solid #5fc3e4;
+  border-radius: 12px;
+  background: rgba(95, 195, 228, 0.2);
+  padding: 24px;
 `;
 
 export const MoviePoster = styled('img')`

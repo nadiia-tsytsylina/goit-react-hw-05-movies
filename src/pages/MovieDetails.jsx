@@ -33,6 +33,7 @@ const MovieDetails = () => {
         <BsArrowLeft />
       </BackLink>
       {movie && <MovieInfo movie={movie} />}
+
       {movie && <AdditionalInfo />}
       {isLoading && <Loader />}
     </div>

@@ -16,6 +16,7 @@ export const CastItem = styled('li')`
   text-align: center;
   border: 2px solid #5fc3e4;
   border-radius: 12px;
+  background: rgba(95, 195, 228, 0.2);
 `;
 
 export const ActorName = styled('h4')`
