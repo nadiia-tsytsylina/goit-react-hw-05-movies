@@ -15,7 +15,7 @@ The application contains 3 pages:
 - React
 - React Router
 - Axios
-- Emotion/styled
+- Emotion styled
 
 ## Getting Started
 
